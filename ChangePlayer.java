@@ -1,7 +1,7 @@
 package TicTacToeGame;
 
 public class ChangePlayer {
-    public static char turn = 'X';
+    public char turn = 'X';
 
     public void whichPlayer() {
         if (turn == 'X') {
@@ -13,7 +13,7 @@ public class ChangePlayer {
     }
 
     public char getTurn() {
-        return this.turn;
+        return turn;
     }
 
 
