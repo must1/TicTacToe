@@ -1,10 +1,8 @@
-package TicTacToeGame;
+package tictactoe;
 
-public class PrintBoard {
-    public static char[][] board = new char[3][3];
+public class BoardPrinter {
 
-
-    public void printBoard() {
+    public void printBoard(char[][] board) {
 
         System.out.println("-------------");
         for (int i = 0; i < 3; i++) {
@@ -15,10 +13,8 @@ public class PrintBoard {
 
             }
             System.out.println();
-
         }
         System.out.println("-------------");
-
     }
 }
 

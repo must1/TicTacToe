@@ -1,15 +1,13 @@
-package TicTacToeGame;
+package tictactoe;
 
 import java.util.Scanner;
 
 class Game {
-    PrintBoard map = new PrintBoard();
-    private FullPlace fullPlace = new FullPlace();
-    ChangePlayer playerChanger = new ChangePlayer();
-    WinnerConditions winner = new WinnerConditions();
-    Scanner input = new Scanner(System.in);
-    char[][] board = PrintBoard.board;
-    NoPlace noPlace = new NoPlace();
+    private BoardPrinter map = new BoardPrinter();
+    private PlayerChanger playerChanger = new PlayerChanger();
+    private ConditionsChecker conditionsChecker = new ConditionsChecker();
+    private Scanner input = new Scanner(System.in);
+    private char[][] board = new char[3][3];
     private int row, col;
 
 
@@ -23,29 +21,26 @@ class Game {
         }
 
 
-        map.printBoard();
-        while (winner.Winner()) {
+        map.printBoard(board);
+        while (conditionsChecker.checkIfWinner(board)) {
 
             row = input.nextInt();
             col = input.nextInt();
-            if (row > 3 || col > 3) {
-                System.out.println("You've inputed place, which is out of the board!\nTry again!");
+            if (conditionsChecker.checkIfOutOfBoard(row, col)) {
 
             } else {
-                if (fullPlace.isFull(row, col)) {
-                    System.err.println("The place is taken");
+                if (conditionsChecker.checkIfOccupied(row, col, board)) {
 
                 } else {
                     board[row - 1][col - 1] = playerChanger.getTurn();
-                    map.printBoard();
-                    playerChanger.whichPlayer();
+                    map.printBoard(board);
+                    playerChanger.changePlayer();
                 }
-
             }
 
 
         }
-        playerChanger.whichPlayer();
-        System.out.println("the winner is " + playerChanger.getTurn());
+        playerChanger.changePlayer();
+        System.out.println("The winner is " + playerChanger.getTurn());
     }
 }
