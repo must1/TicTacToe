@@ -1,21 +1,19 @@
 package tictactoe;
 
-public class PlayerChanger {
+public class PlayerChanger
+{
 
     public char turn = 'X';
 
-    public void changePlayer() {
-        if (turn == 'X') {
+    public void changePlayer()
+    {
+        if (turn == 'X')
+        {
             turn = 'O';
-        } else {
+        }
+        else
+        {
             turn = 'X';
-
         }
     }
-
-    public char getTurn() {
-        return turn;
-    }
-
-
 }
