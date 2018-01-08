@@ -20,25 +20,31 @@ class Game {
         }
 
         map.printBoard(board);
-        while (conditionsChecker.checkIfWinner(board)) {
+        while (!(conditionsChecker.checkIfWinner(board))) {
 
             row = input.nextInt();
             col = input.nextInt();
+
             if (conditionsChecker.checkIfOutOfBoard(row, col)) {
 
             } else {
+
                 if (conditionsChecker.checkIfOccupied(row, col, board)) {
 
-                } else {
-                    board[row - 1][col - 1] = playerChanger.getTurn();
+                }
+                else {
+
+                    board[row - 1][col - 1] = playerChanger.turn;
                     map.printBoard(board);
                     playerChanger.changePlayer();
+
+                    }
                 }
-            }
-
-
         }
+
         playerChanger.changePlayer();
-        System.out.println("The winner is " + playerChanger.getTurn());
+        System.out.println("The winner is " + playerChanger.turn);
+
     }
+
 }
