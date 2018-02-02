@@ -1,5 +1,6 @@
 package tictactoe;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class Game {
@@ -9,6 +10,7 @@ class Game {
     private Scanner input = new Scanner(System.in);
     private char[][] board = new char[3][3];
     private int row, col;
+    private boolean isTrue = true;
 
 
     void StartGame() {
@@ -20,30 +22,31 @@ class Game {
         }
 
         map.printBoard(board);
-        while (!(conditionsChecker.checkIfWinner(board))) {
+        while (isTrue) {
+            try {
+                while (!conditionsChecker.checkIfWinner(board)) {
 
-            row = input.nextInt();
-            col = input.nextInt();
+                    row = input.nextInt();
+                    col = input.nextInt();
 
-            if (conditionsChecker.checkIfOutOfBoard(row, col)) {
+                    if (!conditionsChecker.checkIfOutOfBoard(row, col)) {
 
-            } else {
+                        if (!conditionsChecker.checkIfOccupied(row, col, board)) {
 
-                if (conditionsChecker.checkIfOccupied(row, col, board)) {
-
-                }
-                else {
-
-                    board[row - 1][col - 1] = playerChanger.turn;
-                    map.printBoard(board);
-                    playerChanger.changePlayer();
-
+                            board[row - 1][col - 1] = playerChanger.getTurn();
+                            map.printBoard(board);
+                            playerChanger.changePlayer();
+                        }
                     }
+                    isTrue = false;
                 }
+            } catch (InputMismatchException e) {
+                System.err.println("You have inputed something else\nTry again!");
+                input.nextLine();
+            }
         }
-
         playerChanger.changePlayer();
-        System.out.println("The winner is " + playerChanger.turn);
+        System.out.println("The winner is " + playerChanger.getTurn());
 
     }
 
