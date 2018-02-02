@@ -14,7 +14,6 @@ class Game {
 
 
     void StartGame() {
-
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 board[i][j] = '_';
@@ -22,6 +21,7 @@ class Game {
         }
 
         map.printBoard(board);
+
         while (isTrue) {
             try {
                 while (!conditionsChecker.checkIfWinner(board)) {
@@ -49,5 +49,4 @@ class Game {
         System.out.println("The winner is " + playerChanger.getTurn());
 
     }
-
 }
