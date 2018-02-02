@@ -14,8 +14,8 @@ class Game {
 
 
     void StartGame() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
                 board[i][j] = '_';
             }
         }
@@ -24,6 +24,9 @@ class Game {
 
         while (isTrue) {
             try {
+                if (conditionsChecker.checkIfWinner(board)) {
+                    isTrue = false;
+                }
                 while (!conditionsChecker.checkIfWinner(board)) {
 
                     row = input.nextInt();
@@ -38,7 +41,6 @@ class Game {
                             playerChanger.changePlayer();
                         }
                     }
-                    isTrue = false;
                 }
             } catch (InputMismatchException e) {
                 System.err.println("You have inputed something else\nTry again!");
