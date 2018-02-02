@@ -6,6 +6,6 @@ public class Main {
     {
         Game allGame = new Game();
         allGame.StartGame();
-
     }
 }
+
