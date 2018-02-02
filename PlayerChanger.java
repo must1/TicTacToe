@@ -3,7 +3,7 @@ package tictactoe;
 public class PlayerChanger
 {
 
-    public char turn = 'X';
+    private char turn = 'X';
 
     public void changePlayer()
     {
@@ -16,4 +16,10 @@ public class PlayerChanger
             turn = 'X';
         }
     }
+
+    public char getTurn()
+    {
+        return turn;
+    }
+
 }
